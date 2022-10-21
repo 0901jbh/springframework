@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<!-- 
+	<bean id="greeting" class="com.ssafy.step02.setter.GreetingServiceImpl">
+		<property name="outputter">
+			<ref bean="ouputter"/>			
+		</property>
+	
+	</bean>
+	
+	<bean id="greeting" class="com.ssafy.step02.setter.GreetingServiceImpl" p:outputter-ref="outputter"/>  -->
+	<bean id="greeting" class="com.ssafy.step02.setter.GreetingServiceImpl" autowire="byName"/> 
+	<bean id="outputter" class="com.ssafy.step02.setter.OutputServiceImplConsole"></bean>
+</beans>

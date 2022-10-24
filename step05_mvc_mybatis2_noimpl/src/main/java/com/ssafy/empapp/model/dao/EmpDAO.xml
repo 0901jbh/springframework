@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssafy.empapp.model.dao.DeptDAO">
+<mapper namespace="com.ssafy.empapp.model.dao.EmpDAO">
 
 
 	<insert id="insertDept" parameterType="Dept">
@@ -20,6 +20,9 @@
 	</sql>
 	
 	
+	
+	
+	
 	<select id="selectDepts" resultMap="DeptResultMap">
 	<include refid="basicSelectSQL"></include>
 		
@@ -31,6 +34,12 @@
 		
 	</select>
 	
+	<select id="login" resultType="int" parameterType="User">
+		select name from userinfo where userid=? and password=?
+	</select>
+	<insert id="regist" parameterType="User">
+		insert into userinfo(userid,password,name,email) values(?,?,?,?)
+	</insert>
 	
 	<!-- 레코드 하나를 해당 타입에 어떻게 매핑시켜 담아야하는지의 매핑 전략 -->
 	<resultMap type="Dept" id="DeptResultMap">

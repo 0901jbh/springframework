@@ -20,9 +20,6 @@
 	</sql>
 	
 	
-	
-	
-	
 	<select id="selectDepts" resultMap="DeptResultMap">
 	<include refid="basicSelectSQL"></include>
 		
@@ -33,6 +30,7 @@
 		where deptno = #{value}
 		
 	</select>
+	
 	
 	<!-- 레코드 하나를 해당 타입에 어떻게 매핑시켜 담아야하는지의 매핑 전략 -->
 	<resultMap type="Dept" id="DeptResultMap">

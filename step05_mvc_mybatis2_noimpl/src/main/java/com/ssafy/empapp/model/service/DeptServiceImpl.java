@@ -2,6 +2,8 @@ package com.ssafy.empapp.model.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import com.ssafy.empapp.model.dto.Dept;
 public class DeptServiceImpl implements DeptService {
 
 	private DeptDAO deptDao;
-	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public DeptServiceImpl(DeptDAO deptDao) {
@@ -29,6 +31,8 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public List<Dept> getDepts() throws Exception {
 		// 遺��꽌由ъ뒪�듃 議고쉶
+		System.out.println("부서리스트 조회");
+		logger.info("부서리스트 조회");
 		return deptDao.selectDepts();
 	}
 	@Override

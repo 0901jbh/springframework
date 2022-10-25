@@ -23,16 +23,9 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:dataSource-ref="ds"
 		p:typeAliasesPackage="com.ssafy.empapp.model.dto"
-		
+		p:mapperLocations="classpath:mapper/*.xml"
 	/>
-	<!-- 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
-		p:dataSource-ref="ds"
-		p:typeAliasesPackage="com.ssafy.empapp.model.dto"
-		p:mapperLocations=""
-	>
-	 -->
-	 
+	
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate" c:sqlSessionFactory-ref="sqlSessionFactory" />
 

@@ -1,11 +1,18 @@
 package com.ssafy.empapp.model.dto;
 
+import java.util.List;
+
 // Model : DTO, DO, VO
 public class Dept {
 
 	private int deptno;
 	private String dname;
 	private String loc;
+	private List<Emp> emps;
+	
+	public Dept() {
+		System.out.println("Dept()..");
+	}
 	
 	public Dept(int deptno, String dname, String loc) {
 		super();
@@ -14,6 +21,14 @@ public class Dept {
 		this.loc = loc;
 	}
 
+
+	public List<Emp> getEmps() {
+		return emps;
+	}
+
+	public void setEmps(List<Emp> emps) {
+		this.emps = emps;
+	}
 
 	public int getDeptno() {
 		return deptno;

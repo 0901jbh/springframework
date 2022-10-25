@@ -26,7 +26,7 @@
 	<view-controller path="/user/login_form.do" view-name="/user/login"/>
 	<view-controller path="/user/regist_form.do" view-name="/user/regist"/>
 	<view-controller path="/dept/register_form.do" view-name="/dept/register_form"/>
-	
+	<view-controller path="/emp/register_form.do" view-name="/emp/register_form"/>
 	<interceptors>
 		<interceptor>
 			<mapping path="/dept/**"/>

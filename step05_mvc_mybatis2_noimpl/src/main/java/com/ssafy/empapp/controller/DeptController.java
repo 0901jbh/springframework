@@ -1,6 +1,8 @@
 package com.ssafy.empapp.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,14 +31,7 @@ public class DeptController {
 	
 	
 	
-	@RequestMapping("/list.do")
-	protected String getDeptList(Model model) throws Exception {
-
-		List<Dept> depts = deptService.getDepts();
-		model.addAttribute("deptList", depts); //request 보관함에 저장
-		
-		return "dept/list";
-	}
+	
 	@RequestMapping("/rest/list.do")
 	@ResponseBody
 	protected List<Dept> getDeptRestList() throws Exception {
@@ -54,6 +49,19 @@ public class DeptController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/detail_with_emps.do")
+	protected ModelAndView getDeptDetailWithEmps(@RequestParam int deptno) throws Exception {
+
+		
+		Dept dept = deptService.getDeptWithEmps(deptno);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dept",dept); // request.setAttribute("dept", dept);
+		mav.setViewName("dept/detail_form_emps");
+		
+		return mav;
+	}
+	
 	
 	@RequestMapping(value="/register.do", method= RequestMethod.POST)
 	protected String register(@RequestParam  int deptno, String dname, String loc,Model model) throws Exception {
@@ -83,21 +91,7 @@ public class DeptController {
 //		mav.setView(new InternalResourceView("/dept/list.do"));
 //		return mav;
 //	}
-	@PostMapping("/modify.do")
-	protected String modify(Dept dept,RedirectAttributes rAttributes) throws Exception {
-		
-		// 2. call Model(Service)
-		boolean res = deptService.modifyDept(dept);
-		// 3. move page by result
-		if(res) {
-//			rAttributes.addAttribute("msg", "부서 수정에 성공하였습니다.");
-			rAttributes.addFlashAttribute("msg", "부서 수정에 성공하였습니다.");
-		}else {
-			rAttributes.addFlashAttribute("msg", "부서 수정에 실패하였습니다.");
-		}
-		
-		return "redirect:/dept/list.do";
-	}
+	
 	@GetMapping("/remove.do")
 	protected ModelAndView remove(int deptno) throws Exception {
 		
@@ -117,4 +111,45 @@ public class DeptController {
 		model.addAttribute("errorMsg",e.getMessage());
 		return "error";
 	}
+	@PostMapping("/modify.do")
+	protected String modify(Dept dept,RedirectAttributes rAttributes) throws Exception {
+		
+		// 2. call Model(Service)
+		boolean res = deptService.modifyDept(dept);
+		// 3. move page by result
+		if(res) {
+//			rAttributes.addAttribute("msg", "부서 수정에 성공하였습니다.");
+			rAttributes.addFlashAttribute("msg", "부서 수정에 성공하였습니다.");
+		}else {
+			rAttributes.addFlashAttribute("msg", "부서 수정에 실패하였습니다.");
+		}
+		
+		return "redirect:/dept/list.do";
+	}
+	@RequestMapping("/list.do")
+	protected String getDeptList(Model model) throws Exception {
+
+		List<Dept> depts = deptService.getDepts();
+		model.addAttribute("deptList", depts); //request 보관함에 저장
+		
+		return "dept/list";
+	}
+	@PostMapping("/search.do")
+	protected String getConditionList(String dname,String loc,Model model) throws Exception {
+		System.out.println("in");
+		System.out.println(dname+","+loc+"|");
+		if(loc == null)
+		System.out.println("nullllllllll");
+		Map<String, Object> map = new HashMap<String,Object>();
+		if(dname != null && !dname.equals(""))
+		map.put("dname",dname);
+		if(loc != null && !loc.equals(""))
+		map.put("loc",loc);
+		List<Dept> depts = deptService.getConditionList(map);
+		System.out.println("depts size : "+ depts.size());
+		model.addAttribute("deptList",depts);
+		return "dept/list";
+	}
+	
+	
 }

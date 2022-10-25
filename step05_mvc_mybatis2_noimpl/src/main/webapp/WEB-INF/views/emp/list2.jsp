@@ -10,32 +10,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-<script>
-	<%-- 
-	<c:if test="${not empty param.msg}">
-		alert("${param.msg}");  
-	</c:if>
-	--%>
-	
-	<c:if test="${not empty msg}">
-	alert("${msg}");  
-</c:if>
-	
-	
-</script>
-	<jsp:include page="/WEB-INF/views/menu.jsp"/>
 	<div class="container">
 		<div class="row mt-3">
-			<form method="post" action="${root}/dept/search.do">
-				<input type="text" name="dname" id="dname" placeholder="이름"></input>
-				<input type="text" name="loc" id="loc" placeholder="지역"></input>
-				<input type="submit" value="조회"></input>
-			
-			
-			</form>
-		
-		
-		
 			<h2 class="bg-primary text-light text-center">부서 목록</h2>
 		</div>
 		<div class="row">
@@ -55,15 +31,18 @@
 						<tr> <td colspan="4">등록된 부서정보가 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${requestScope.deptList}" 
-							var="dept" varStatus="status">
+						<c:set var="no" value="1"/>
+<%-- 						<%
+							int no = 1;
+						%> --%>
+						<c:forEach items="${requestScope.deptList}" var="dept">
 							<tr>
-								<td>${status.count}</td>
-								<td>${dept.deptno}</td>
-								<%-- <td><a href="${root}/dept/detail.do?deptno=${dept.deptno}">${dept.dname}</a></td> --%>
-								<td><a href="${root}/dept/detail_with_emps.do?deptno=${dept.deptno}">${dept.dname}</a></td>
+								<td>${no}</td>
+								<td>${dept.deptNo}</td>
+								<td><a href="./detail.do?deptno=${dept.deptno}">${dept.dname}</a></td>
 								<td>${dept.loc}</td>
 							</tr>
+							<c:set var="no" value="${no+1}"/>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>

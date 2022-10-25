@@ -26,43 +26,37 @@
 	<jsp:include page="/WEB-INF/views/menu.jsp"/>
 	<div class="container">
 		<div class="row mt-3">
-			<form method="post" action="${root}/dept/search.do">
-				<input type="text" name="dname" id="dname" placeholder="이름"></input>
-				<input type="text" name="loc" id="loc" placeholder="지역"></input>
-				<input type="submit" value="조회"></input>
-			
-			
-			</form>
-		
-		
-		
-			<h2 class="bg-primary text-light text-center">부서 목록</h2>
+			<h2 class="bg-primary text-light text-center">사원 목록</h2>
 		</div>
 		<div class="row">
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>번호</th>
+						<th>사원번호</th>
+						<th>사원이름</th>
+						<th>직무</th>
+						<th>급여</th>
 						<th>부서번호</th>
-						<th>부서이름</th>
-						<th>부서지역</th>
 					</tr>			
 				</thead>
 				<tbody>
 				
 				<c:choose>
-					<c:when test="${empty deptList}">	
-						<tr> <td colspan="4">등록된 부서정보가 없습니다.</td></tr>
+					<c:when test="${empty empList}">	
+						<tr> <td colspan="6">등록된 부서정보가 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${requestScope.deptList}" 
-							var="dept" varStatus="status">
+						<c:forEach items="${requestScope.empList}" 
+							var="emp" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
-								<td>${dept.deptno}</td>
+								<td>${emp.empno}</td>
 								<%-- <td><a href="${root}/dept/detail.do?deptno=${dept.deptno}">${dept.dname}</a></td> --%>
-								<td><a href="${root}/dept/detail_with_emps.do?deptno=${dept.deptno}">${dept.dname}</a></td>
-								<td>${dept.loc}</td>
+								<td><a href="${root}/emp/detail_with_dept.do?empno=${emp.empno}">${emp.ename}</a></td>
+								<td>${emp.job}</td>
+								<td>${emp.sal}</td>
+								<td>${emp.deptno}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

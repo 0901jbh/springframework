@@ -1,25 +1,29 @@
 package com.ssafy.empapp.model.dao;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.empapp.model.dto.Dept;
-import com.ssafy.empapp.model.dto.User;
-@Repository
+import com.ssafy.empapp.model.dto.Emp;
+
+@Mapper
 public interface EmpDAO {
-
-	int insertDept(Dept dept) throws SQLException;
-
-	List<Dept> selectDepts() throws SQLException;
-
-	Dept selectDept(int deptno) throws SQLException;
-
-	int updateDept(Dept dept) throws SQLException;
-
-	int deleteDept(int deptNo) throws SQLException;
+	//void deleteEmps(Map<String, Object> map);
+	void deleteEmps(int[] empNos);
 	
-	String login(String userId, String password) throws SQLException;
-	int regist(User user) throws SQLException;
+	int insertEmp(Emp emp);
+	
+	List<Emp> selectEmps();
+	
+	Emp selectEmp(int empno);
+	
+	int updateEmp(Emp emp);
+	
+	int deleteEmp(int empno);
+	
+	Emp selectEmpWithDept(int empno);
+	
+	
 }

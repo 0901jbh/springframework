@@ -2,59 +2,40 @@ package com.ssafy.empapp.model.dto;
 
 import java.util.List;
 
-// Model : DTO, DO, VO
-public class Dept {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+//@Data
+@RequiredArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Setter
+@Getter
+//Model : DTO, DO, VO
+
+//@NoArgsConstructor
+//@AllArgsConstructor
+public class Dept {
+	@NonNull
 	private int deptno;
 	private String dname;
 	private String loc;
 	private List<Emp> emps;
 	
 	public Dept() {
-		System.out.println("Dept()..");
+		
 	}
-	
-	public Dept(int deptno, String dname, String loc) {
-		super();
+	public Dept(int deptno,String dname,String loc) {
 		this.deptno = deptno;
 		this.dname = dname;
 		this.loc = loc;
 	}
-
-
-	public List<Emp> getEmps() {
-		return emps;
-	}
-
-	public void setEmps(List<Emp> emps) {
-		this.emps = emps;
-	}
-
-	public int getDeptno() {
-		return deptno;
-	}
-
-
-	public void setDeptno(int deptno) {
-		this.deptno = deptno;
-	}
-
-
-	public String getDname() {
-		return dname;
-	}
-
-	public void setDname(String dname) {
-		this.dname = dname;
-	}
-
-	public String getLoc() {
-		return loc;
-	}
-
-	public void setLoc(String loc) {
-		this.loc = loc;
-	}
-	
 	
 }

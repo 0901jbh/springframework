@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 import com.ssafy.empapp.model.dao.DeptDAO;
 import com.ssafy.empapp.model.dto.Dept;
 
-// Model : B/L
+import lombok.extern.slf4j.Slf4j;
 
+// Model : B/L
+@Slf4j()
 @Service
 public class DeptServiceImpl implements DeptService {
 
 	private DeptDAO deptDao;
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public DeptServiceImpl(DeptDAO deptDao) {
@@ -33,7 +34,7 @@ public class DeptServiceImpl implements DeptService {
 	public List<Dept> getDepts(){
 		// 遺��꽌由ъ뒪�듃 議고쉶
 		System.out.println("부서리스트 조회");
-		logger.info("부서리스트 조회");
+		log.info("부서리스트 조회");
 		return deptDao.selectDepts();
 	}
 	@Override

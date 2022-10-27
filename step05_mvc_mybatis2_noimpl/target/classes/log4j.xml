@@ -16,6 +16,14 @@
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.transaction">
+		<level value="trace" />
+	</logger>
+	
+	<logger name="org.springframework.jdbc">
+		<level value="trace" />
+	</logger>
+	
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>

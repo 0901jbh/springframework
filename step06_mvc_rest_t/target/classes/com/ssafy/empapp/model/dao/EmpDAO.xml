@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.empapp.model.dao.EmpDAO">
+
+	<insert id="insertEmp" parameterType="Emp">
+		insert into emp(empno,ename,job,sal,deptno) values(#{empno},#{ename},#{job},#{sal},#{deptno})
+	</insert>
+	
+	
+	<update id="updateEmp" parameterType="Emp">
+		update emp set ename = #{ename},job = #{job} ,sal=#{sal},deptno=#{deptno}
+		where empno = #{empno}
+	
+	</update>
+	
+	<delete id="deleteEmp" parameterType="int">
+		delete from emp where empno = #{empno}
+	</delete>
+	<sql id="basicEmpSelectSQL">
+		select empno,ename,job,sal,deptno from emp
+	</sql>
+	
+	
+	<select id="selectEmps" resultMap="EmpResultMap">
+	<include refid="basicEmpSelectSQL"></include>
+		
+	</select>
+	
+	<select id="selectEmp" resultType="Emp" parameterType="int">
+	<include refid="basicEmpSelectSQL"></include>
+		where empno = #{value}
+		
+	</select>
+
+
+
+
+
+
+
+
+
+	<delete id="deleteEmps" parameterType="map">
+		delete from emp
+		
+		<where>
+			empno in
+		</where>
+		<foreach collection="array" item="no" open="(" close=")" separator=",">
+			#{no}
+		
+		</foreach>
+	
+	</delete>
+
+	<resultMap type="Emp" id="EmpResultMap">
+		<id column="empno" property="empno" />
+		<result column="ename" property="ename"/>
+		<result column="job" property="job"/>
+		<result column="sal" property="sal"/>
+		<result column="deptno" property="deptno"/>
+	</resultMap>
+
+	<resultMap type="Emp" id="EmpDeptResultMap" extends="EmpResultMap">
+		<association property="dept" resultMap="com.ssafy.resultmaps.DeptResultMap"/>
+	</resultMap>
+	
+	<select id="selectEmpWithDept" resultMap="EmpDeptResultMap"   parameterType="int">
+		select 			e.empno,e.ename,e.sal,e.job,e.deptno,d.deptno,d.dname,d.loc
+		from			emp e
+		join dept d on(d.deptno=e.deptno)
+		where 			e.empno = #{empno}
+		
+	
+	</select>
+	
+
+
+</mapper>

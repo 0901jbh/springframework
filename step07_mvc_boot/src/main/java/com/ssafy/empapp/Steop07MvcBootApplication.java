@@ -11,5 +11,4 @@ public class Steop07MvcBootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Steop07MvcBootApplication.class, args);
 	}
-
 }

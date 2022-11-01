@@ -31,8 +31,8 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public boolean registerDept(Dept dept) {
 		// 부서 등록
-		return deptDao.insertDept(dept) > 0 ;
-//		return deptDao.insertDept(dept) > 0 && deptDao.insertDept(dept) > 0;
+		//return deptDao.insertDept(dept) > 0 ;
+	  return deptDao.insertDept(dept) > 0 && deptDao.insertDept(dept) > 0;
 	}
 
 	@Override
@@ -46,19 +46,19 @@ public class DeptServiceImpl implements DeptService {
 		return deptDao.deleteDept(deptNo) > 0;
 	}
 
-//	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	@Override
 	public Dept getDept(int deptno){
 		// 부서조회
 		return deptDao.selectDept(deptno) ;
 	}
-//	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	@Override
 	public Dept getDeptWithEmps(int deptno){
 		return deptDao.selectDeptWithEmps(deptno);
 	}
 
-//	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	@Override
 	public List<Dept> getDepts(Map<String, Object> conditions) {
 		log.info("부서리스트 조회");

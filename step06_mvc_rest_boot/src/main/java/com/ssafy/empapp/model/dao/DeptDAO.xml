@@ -58,7 +58,7 @@
 	<select id="selectDeptWithEmps" parameterType="int" resultMap="DeptEmpResultMap">
 		select				d.deptno,d.dname,d.loc, e.empno, e.ename,e.sal,e.job
 		from				dept d
-		left outer 	join	emp   e on(d.deptno = e.deptno)
+		left outer 	join	emp e on(d.deptno = e.deptno)
 		where	d.deptno = #{deptno}
 	</select>
 	

@@ -68,7 +68,8 @@ public class DeptRestController  {
 			return ResponseEntity.created(URI.create("/api/depts/"+dept.getDeptno())).build();
 		}else {			
 			return ResponseEntity.internalServerError().build();
-		}
+		} 
+			
 	}
 	
 	@PutMapping("/{deptno}")
